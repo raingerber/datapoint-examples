@@ -1,0 +1,36 @@
+const DataPoint = require('data-point')
+
+// logs the input and context to show what the context object looks like
+
+const dataPoint = DataPoint.create({
+  // "values" are defined when creating a DataPoint instance
+  values: {
+    apiKeys: {
+      nick: 'jukebox.nick.com',
+      nickjr: 'nickjr.com'
+    }
+  }
+})
+
+// reducer functions accept at most TWO parameters:
+function reducer (input, context) {
+  console.log('INPUT:')
+  console.log(input)
+  console.log('\nCONTEXT:')
+  console.log(JSON.stringify(context, null, 2))
+}
+
+const input = 'this is the input'
+
+const options = {
+  // "locals" are defined when executing a transformation
+  locals: {
+    foo: 'bar'
+  }
+}
+
+dataPoint.resolve(
+  reducer,
+  input,
+  options
+)
